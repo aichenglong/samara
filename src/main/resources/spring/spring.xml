@@ -11,12 +11,12 @@
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd">
-
-	<context:annotation-config />
-	<context:component-scan base-package="org.samaraframework,com.xiyue">
-		<context:exclude-filter type="annotation"
-			expression="org.springframework.stereotype.Controller" />
-	</context:component-scan>
+       
+  <context:annotation-config />
+    <context:component-scan base-package="org.samaraframework,com.xiyue">
+        <context:exclude-filter type="annotation"
+                expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
 	<!-- 将多个配置文件读取到容器中，交给Spring管理 -->
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -30,10 +30,15 @@
 	<import resource="classpath:spring/spring-dataSource.xml" />
 	<!-- mvc -->
 	<import resource="classpath:spring/spring-mvc.xml" />
+	<!-- dao -->
+	<import resource="classpath:spring/spring-dao.xml"/>
+	<!-- shiro -->
+	<import resource="classpath:spring/spring-shiro.xml"/>
 	<!-- jpa -->
 	<!-- <import resource="classpath:spring/spring-jpa.xml" /> -->
+	
 	<!--task -->
-	<import resource="classpath:spring/spring-task.xml" />
-
+	 <!-- <import resource="classpath:spring/spring-task.xml"/>  -->
+	
 	<!-- <import resource="classpath:spring/spring-jedis.xml" /> -->
-	</beans>
+</beans>

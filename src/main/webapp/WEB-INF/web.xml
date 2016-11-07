@@ -11,32 +11,52 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring/spring.xml</param-value>
 	</context-param>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+
+	
+<!-- shiro的filter -->
+	<!-- shiro过虑器，DelegatingFilterProxy通过代理模式将spring容器中的bean和filter关联起来 -->
+	<filter>
+		<filter-name>shiroFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<!-- 设置true由servlet容器控制filter的生命周期 -->
+		<init-param>
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<!-- 设置spring容器filter的bean id，如果不设置则找与filter-name一致的bean-->
+		<init-param>
+			<param-name>targetBeanName</param-name>
+			<param-value>shiroFilter</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>shiroFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
 	<!-- spring dispatcher -->
 	<servlet>
-		<servlet-name>dispatcher</servlet-name>
+		<servlet-name>springmvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:spring/spring-servlet.xml</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
+
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>dispatcher</servlet-name>
+		<servlet-name>springmvc</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
 
-	<!-- log4j -->
-	<context-param>
-		<param-name>log4jConfigLoaction</param-name>
-		<param-value>classpath:log4j2.xml</param-value>
-	</context-param>
-	<listener>
-		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-	</listener>
+	
+
 	<!-- Encoding Filter -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -45,13 +65,17 @@
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
 		</init-param>
-		<init-param>
-			<param-name>forceEncoding</param-name>
-			<param-value>true</param-value>
-		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
 </web-app>

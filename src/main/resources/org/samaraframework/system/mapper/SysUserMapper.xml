@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.samaraframework.system.mapper.SysUserMapper">
+	<resultMap id="SysUserMap" type="org.samaraframework.system.domain.SysUser">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="userCode" property="userCode" jdbcType="VARCHAR" />
+		<result column="userName" property="userName" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="salt" property="salt" jdbcType="VARCHAR" />
+		<result column="locked" property="locked" jdbcType="CHAR" />
+		<result column="lastTime" property="lastTime"/>
+		<result column="lastIp" property="lastIp" />
+		<result column="available" property="available"/>
+	</resultMap>
+	<sql id="allFields">
+	 ID,USERCODE,USERNAME,EMAIL,PASSWORD,SALT,LOCKED,LASTTIME,LASTIP,AVAILABLE
+	</sql>
+	<sql id="insertFields">
+	USERCODE,USERNAME,EMAIL,PASSWORD,SALT,LOCKED,LASTTIME,LASTIP,AVAILABLE
+	</sql>
+	<sql id="dynamic_where_sql">
+	<where>
+	<if test="userCode!=null  and   userCode!=''">
+	userCode=#{userCode}
+	</if>
+	<if test="userName!=null and  userName!=''">
+	userName=#{userName}
+	</if>
+	<if test="email!=null and  email!=''">
+	email=#{email}
+	</if>
+	<if test="password!=null and  password!=''">
+	password=#{password}
+	</if>
+	<if test="salt!=null and  salt!=''">
+	salt=#{salt}
+	</if>
+	<if test="locked!=null and  locked!=''">
+	locked=#{locked}
+	</if>
+	
+		<if test="lastTime!=null and  lastTime!=''">
+	lastTime=#{lastTime}
+	</if>
+	
+		<if test="lastIp!=null and  lastIp!=''">
+	lastIp=#{lastIp}
+	</if>
+		<if test="available!=null and  available!=''">
+	available=#{available}
+	</if>
+	</where>
+	</sql>
+	<select id="findByEntity" parameterType="org.samaraframework.system.domain.SysUser" resultMap="SysUserMap">
+	select 
+	<include refid="allFields"/>
+	from sys_user
+	<include refid="dynamic_where_sql"/>
+	</select>
+	
+</mapper>

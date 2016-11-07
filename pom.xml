@@ -19,11 +19,13 @@
 		<slf4j.version>1.7.7</slf4j.version>
 		<logback.version>1.1.2</logback.version>
 		<httpclient.version>4.3.5</httpclient.version>
-		<shiro.version>1.2.3</shiro.version>
+		<shiro.version>1.3.2</shiro.version>
 		<fastjson-lib.version>1.1.37</fastjson-lib.version>
 		<quartz.version>2.2.1</quartz.version>
 		<gson.version>2.2.4</gson.version>
 		<commons-fileupload.version>1.2.1</commons-fileupload.version>
+		<mybatis.version>3.2.8</mybatis.version>
+		<mybatis-spring.version>1.3.0</mybatis-spring.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -32,13 +34,6 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>19.0</version>
-		</dependency>
-
-		<!-- jsp会使用 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -80,84 +75,13 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${spring-data-jpa.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 			<version>${quartz.version}</version>
 		</dependency>
 
-
-		<!-- druid -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>1.0.7</version>
-		</dependency>
-		<dependency>
-			<groupId>com.thoughtworks.xstream</groupId>
-			<artifactId>xstream</artifactId>
-			<version>1.4.9</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
-		<dependency>
-			<groupId>org.freemarker</groupId>
-			<artifactId>freemarker</artifactId>
-			<version>2.3.23</version>
-		</dependency>
-		<!-- JSON begin -->
-		<!-- JSON begin -->
-
-
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>${fastjson-lib.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>${gson.version}</version>
-		</dependency>
-		<!-- commons-fileupload -->
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>${commons-fileupload.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.module</groupId>
-			<artifactId>jackson-module-jaxb-annotations</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.json-lib</groupId>
-			<artifactId>json-lib</artifactId>
-			<version>2.4</version>
-			<classifier>jdk15</classifier>
-		</dependency>
-		<!-- JSON end -->
-
-		<!-- connection pool -->
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-jdbc</artifactId>
-			<version>${tomcat-jdbc.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<!-- MySql begin -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.32</version>
-		</dependency>
-		<!-- MySql end -->
+		<!-- shiro -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-core</artifactId>
@@ -178,22 +102,126 @@
 			<artifactId>shiro-spring</artifactId>
 			<version>${shiro.version}</version>
 		</dependency>
-		<!-- GENERAL UTILS begin -->
+		<!-- mybitis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>${mybatis-spring.version}</version>
+		</dependency>
+		<!-- druid jdbc -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.23</version>
+		</dependency>
+		<!--aspectj -->
+		<dependency>
+			<groupId> org.aspectj</groupId>
+			<artifactId> aspectjweaver</artifactId>
+			<version> 1.6.11</version>
+		</dependency>
+		<!-- json -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>19.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson-lib.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jaxb-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<classifier>jdk15</classifier>
+		</dependency>
+
+		<!-- commons -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>${commons-fileupload.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${commons-lang3.version}</version>
 		</dependency>
-		<!-- GENERAL UTILS end -->
-		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+		<dependency>
+			<groupId>org.apache.ant</groupId>
+			<artifactId>ant</artifactId>
+			<version>1.9.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+
+		<!-- JSON end -->
+
+		<!-- connection pool -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jdbc</artifactId>
+			<version>${tomcat-jdbc.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- MySql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.32</version>
+		</dependency>
+		<!-- jstl -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<!-- log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
 
-
-		<!-- log begin -->
 		<dependency>
 			<groupId>com.googlecode.log4jdbc</groupId>
 			<artifactId>log4jdbc</artifactId>
@@ -236,7 +264,7 @@
 		</dependency>
 		<!-- log end -->
 
-		<!-- HttpClient begin -->
+		<!-- HttpClient -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
@@ -247,26 +275,6 @@
 			<artifactId>commons-httpclient</artifactId>
 			<version>3.1</version>
 		</dependency>
-		<!-- HttpClient end -->
-
-		<!-- common -->
-		<dependency>
-			<groupId>org.apache.ant</groupId>
-			<artifactId>ant</artifactId>
-			<version>1.9.4</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-		</dependency>
-
-		<!-- 工具类 end -->
 
 		<!-- jetty -->
 		<dependency>
@@ -283,7 +291,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>samara</finalName>
+		<!-- <finalName>samara</finalName> -->
 		<plugins>
 			<!-- jetty插件, 设定context path与spring profile -->
 			<plugin>
@@ -305,9 +313,8 @@
 							<port>10086</port>
 						</connector>
 					</connectors>
-					<webAppConfig>
-						<contextPath>/${project.artifactId}</contextPath>
-					</webAppConfig>
+					<!-- <webAppConfig> <contextPath>/${project.artifactId}</contextPath> 
+						</webAppConfig> -->
 				</configuration>
 			</plugin>
 			<plugin>
